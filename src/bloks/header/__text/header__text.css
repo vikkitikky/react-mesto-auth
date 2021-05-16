@@ -1,0 +1,20 @@
+.header__text {
+  color: white;
+  font-size: 18px;
+  line-height: 22px;
+  text-decoration: none;
+  justify-self: flex-end;
+  margin-left: auto;
+}
+
+.header__text:last-child {
+  margin-left: 24px;
+  cursor: pointer;
+  color: #a9a9a9;
+}
+
+@media screen and (max-width: 976px) {
+  .header__text:last-child {
+    margin-right: 28px;
+  }
+}

@@ -1,0 +1,26 @@
+.profile__edit-btn {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  background-image: url(../../../image/edit.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  outline: none;
+  border: 1px solid #FFFFFF;
+  margin: 20px 0 0 17px;
+}
+
+.profile__edit-btn:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 665px) {
+  .profile__edit-btn {
+    width: 17px;
+    height: 17px;
+    background-size: 7.5px 7.5px;
+    margin-left: 8px;
+  }
+}

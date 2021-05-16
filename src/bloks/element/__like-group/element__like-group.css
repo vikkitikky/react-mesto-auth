@@ -1,0 +1,6 @@
+.element__like-group {
+  grid-row: 2/3;
+  grid-column: 5/6;
+  align-self: center;
+  justify-self: center;
+}

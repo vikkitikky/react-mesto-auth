@@ -1,0 +1,7 @@
+.element {
+  display: grid;
+  grid-template: 282px max-content/repeat(5, 1fr);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #ffffff;
+}

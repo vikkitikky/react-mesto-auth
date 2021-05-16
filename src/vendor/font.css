@@ -1,0 +1,20 @@
+@font-face {
+  src: url(./font/Inter-Regular.woff2);
+  src: url(./font/Inter-Regular.woff);
+  font-family: 'Inter';
+  font-weight: 400;
+}
+
+@font-face {
+  src: url(./font/Inter-Black.woff2);
+  src: url(./font/Inter-Black.woff);
+  font-family: 'Inter';
+  font-weight: 900;
+}
+
+@font-face {
+  src: url(./font/Inter-Medium.woff2);
+  src: url(./font/Inter-Medium.woff);
+  font-family: 'Inter';
+  font-weight: 500;
+}

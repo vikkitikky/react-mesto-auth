@@ -1,0 +1,15 @@
+.sign__submit {
+  margin-top: 216px;
+  height: 50px;
+  background: #FFFFFF;
+  border-radius: 2px;
+  border: none;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+@media screen and (max-width: 665px) {
+  .sign__submit {
+    margin-top: 173px;
+  }
+}
