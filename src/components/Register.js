@@ -8,8 +8,6 @@ const Register = ({onRegister}) => {
   function handleSubmit(e) {
     e.preventDefault();
     onRegister(password, email);
-    setEmail('');
-    setPassword('');
   }
 
   return (

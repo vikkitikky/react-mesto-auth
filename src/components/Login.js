@@ -8,8 +8,6 @@ const Login = ({signIn}) => {
   function handleSubmit(e) {
     e.preventDefault();
     signIn(password, email);
-    setEmail('');
-    setPassword('');
   }
 
   return (

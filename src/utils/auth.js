@@ -14,9 +14,6 @@ export const register = (password, email) => {
     .then((res) => {
       return res;
     })
-    .catch((err) => {
-      console.log(err)
-    })
 }
 
 export const authorize = (password, email) => {
@@ -29,15 +26,6 @@ export const authorize = (password, email) => {
   })
     .then((response) => {
       return response.json();
-    })
-    .then((data) => {
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-        return data;
-      }
-    })
-    .catch((err) => {
-      console.log(err)
     })
 }
 

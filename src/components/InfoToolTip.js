@@ -3,12 +3,11 @@ import React from 'react';
 function InfoToolTip({
                        isOpen,
                        success,
-                       onClose,
-                       stopClose
+                       onClose
                      }) {
   return (
     <section className={`popup ${isOpen ? ' popup_visible' : ''}`} onMouseDown={onClose}>
-      <div className="popup__info" onClick={stopClose}>
+      <div className="popup__info" onClick={e => e.stopPropagation()}>
         <button type="button" className="popup__close-btn" onMouseDown={onClose}></button>
         <div
           className={`popup__confirm-img ${success ? 'popup__confirm-img_type_success' : 'popup__confirm-img_type_fail'}`}>

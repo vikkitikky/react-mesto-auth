@@ -30,7 +30,7 @@ function App() {
   const [cardToDelete, setCardToDelete] = React.useState(null);
   const [loadingText, setLoadingText] = React.useState('');
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
+  const [successSignUp, setSuccessSignUp] = React.useState(false);
   const [email, setEmail] = React.useState('');
   const history = useHistory();
 
@@ -45,7 +45,7 @@ function App() {
   }, [loggedIn]);
 
   React.useEffect(() => {
-    api.prepareDataForRender()
+    api.getAppData()
       .then(([userProfile, cardList]) => {
         setCurrentUser(userProfile);
         setCards(cardList);
@@ -86,10 +86,6 @@ function App() {
     }
   }
 
-  function stopEvent(e) {
-    e.stopPropagation();
-  }
-
   function closeAllPopups() {
     document.removeEventListener('keydown', handleEscButton);
     setIsEditAvatarPopupOpen(false);
@@ -110,8 +106,7 @@ function App() {
 
     api.changeLikeStatus(card._id, !isLiked)
       .then((newCard) => {
-        const newCards = cards.map((c) => c._id === card._id ? newCard : c);
-        setCards(newCards);
+        setCards((cards) => cards.map((c) => c._id === card._id ? newCard : c))
       })
       .catch(err => {
         console.log(err)
@@ -122,8 +117,7 @@ function App() {
     setLoadingText('Удаление');
     api.deleteCard(cardToDelete)
       .then(() => {
-        const newCards = cards.filter(c => c._id !== cardToDelete);
-        setCards(newCards);
+        setCards(cards => cards.filter(c => c._id !== cardToDelete));
         closeAllPopups();
       })
       .catch(err => {
@@ -171,6 +165,7 @@ function App() {
     localStorage.removeItem('token');
     setEmail('');
     setLoggedIn(false);
+    history.push('/');
   }
 
   function handleSignIn(password, email) {
@@ -190,25 +185,26 @@ function App() {
     auth.register(password, email)
       .then((res) => {
         if (res.data['_id']) {
-          setSuccess(true);
+          setSuccessSignUp(true);
           setIsInfoPopupOpen(true);
           history.push('/sign-in');
         }
         if (res.status === 400 || res.status === 404) {
-          setSuccess(false);
-          setIsInfoPopupOpen(true);
+          setSuccessSignUp(false);
         }
       })
       .catch((err) => {
         console.log(err)
-        setSuccess(false);
+        setSuccessSignUp(false);
+      })
+      .finally(() => {
         setIsInfoPopupOpen(true);
       })
   }
 
   function handleTokenCheck() {
-    if (localStorage.getItem('token')) {
-      const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
+    if (token) {
       auth.checkToken(token)
         .then(res => {
           if (res) {
@@ -258,43 +254,37 @@ function App() {
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
-          stopClose={stopEvent}
           onUpdateAvatar={handleUpdateAvatar}
         />
 
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-          stopClose={stopEvent}
           onUpdateUser={handleUpdateUser}
         />
 
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
-          stopClose={stopEvent}
           onAddPlace={handleAddPlaceSubmit}
         />
 
         <ImagePopup
           card={selectedCard}
           onClose={closeAllPopups}
-          stopClose={stopEvent}
         />
 
         <SubmitDeletePopup
           isOpen={isDeletePopupOpen}
           onClose={closeAllPopups}
-          stopClose={stopEvent}
           onDelete={handleCardDelete}
         />
       </LoadingContext.Provider>
 
       <InfoToolTip
         isOpen={isInfoPopupOpen}
-        success={success}
+        success={successSignUp}
         onClose={closeAllPopups}
-        stopClose={stopEvent}
       />
     </CurrentUserContext.Provider>
   );

@@ -46,15 +46,6 @@ function Main({
       <section className="photo">
         {cardList}
       </section>
-
-      <section className="popup popup_type_confirm">
-        <form className="form popup__form_type_confirm" name="confirm-form" noValidate>
-          <button type="button" className="popup__close-btn popup__close-btn_form_confirm"></button>
-          <h3 className="form__title">Вы уверены?</h3>
-          <button type="submit" className="form__submit-btn popup__submit-btn_form_add">Да</button>
-        </form>
-      </section>
-
     </main>
   )
 }

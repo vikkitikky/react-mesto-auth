@@ -20,7 +20,7 @@ class Api {
     });
   }
 
-  getCard() {
+  getCards() {
     return this._sendRequest(`${this._baseUrl}cards`, {
       headers: this._headers
     })
@@ -72,8 +72,8 @@ class Api {
     })
   }
 
-  prepareDataForRender() {
-    return Promise.all([this.getUserInfo(), this.getCard()])
+  getAppData() {
+    return Promise.all([this.getUserInfo(), this.getCards()])
   }
 }
 
